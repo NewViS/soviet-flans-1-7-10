@@ -1,0 +1,334 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+//compileJava { 
+//sourceCompatibility = targetCompatibility = 1.8 
+//}
+apply plugin: 'forge'
+
+version = "4.10.0"
+group= "com.flansmod"
+archivesBaseName = "Flan's Mod"
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "eclipse"
+    
+    replace "@ALLOWED_VERSION@", "[4.10,4.11)"
+    replace "@MC_VERSION@", project.minecraft.version
+    replace "@VERSION@", project.version
+    replaceIn "FlansMod.java"
+}
+compileJava { 
+sourceCompatibility = targetCompatibility = 1.8 
+}
+processResources
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+version = "${project.minecraft.version}-${project.version}"
+
+task mechaParts(type: Jar) {
+    from 'eclipse/Flan/Mecha Parts Pack'
+    baseName = 'Mecha Parts'
+    appendix = 'Content Pack'
+}
+
+task modernWeapons(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/mw/'}
+    from 'eclipse/Flan/Modern Weapons Pack'
+    baseName = 'Modern Warfare'
+    appendix = 'Content Pack'
+}
+
+task nerf(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/nerf/'}
+    from 'eclipse/Flan/Nerf Pack'
+    baseName = 'Nerf'
+    appendix = 'Content Pack'
+}
+
+task simpleParts(type: Jar) {
+    from 'eclipse/Flan/Parts Pack'
+    baseName = 'Simple Parts'
+    appendix = 'Content Pack'
+}
+
+task titan(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/titan/'}
+    from 'eclipse/Flan/Titan Pack'
+    baseName = 'Titan'
+    appendix = 'Content Pack'
+}
+
+task ww2(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/ww2/'}
+    from 'eclipse/Flan/WW2 Pack'
+    baseName = 'WW2'
+    appendix = 'Content Pack'
+}
+
+task d33vaz(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33vaz/'}
+    from 'eclipse/Flan/d33vaz'
+    baseName = 'D33VAZ'
+    appendix = 'Content Pack'
+}
+
+task d33bmw(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33bmw/'}
+    from 'eclipse/Flan/d33bmw'
+    baseName = 'D33BMW'
+    appendix = 'Content Pack'
+}
+
+task d33nissan(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33nissan/'}
+    from 'eclipse/Flan/d33nissan'
+    baseName = 'D33NISSAN'
+    appendix = 'Content Pack'
+}
+
+task d33lincoln(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33lincoln/'}
+    from 'eclipse/Flan/d33lincoln'
+    baseName = 'D33LINCOLN'
+    appendix = 'Content Pack'
+}
+
+task d33chevrolet(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33chevrolet/'}
+    from 'eclipse/Flan/d33chevrolet'
+    baseName = 'D33CHEVROLET'
+    appendix = 'Content Pack'
+}
+
+task d33zaz(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33zaz/'}
+    from 'eclipse/Flan/d33zaz'
+    baseName = 'D33ZAZ'
+    appendix = 'Content Pack'
+}
+
+task d33zil(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33zil/'}
+    from 'eclipse/Flan/d33zil'
+    baseName = 'D33ZIL'
+    appendix = 'Content Pack'
+}
+
+task d33audi(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33audi/'}
+    from 'eclipse/Flan/d33audi'
+    baseName = 'D33AUDI'
+    appendix = 'Content Pack'
+}
+
+task d33azlk(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33azlk/'}
+    from 'eclipse/Flan/d33azlk'
+    baseName = 'D33AZLK'
+    appendix = 'Content Pack'
+}
+
+task d33vazs(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33vazs/'}
+    from 'eclipse/Flan/d33vazs'
+    baseName = 'D33VAZ_S'
+    appendix = 'Content Pack'
+}
+
+task d33mercedes(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33mercedes/'}
+    from 'eclipse/Flan/d33mercedes'
+    baseName = 'D33MERCEDES'
+    appendix = 'Content Pack'
+}
+
+task d33lamborghini(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33lamborghini/'}
+    from 'eclipse/Flan/d33lamborghini'
+    baseName = 'D33LAMBORGHINI'
+    appendix = 'Content Pack'
+}
+
+task d33toyota(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33toyota/'}
+    from 'eclipse/Flan/d33toyota'
+    baseName = 'D33TOYOTA'
+    appendix = 'Content Pack'
+}
+
+task d33tesla(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33tesla/'}
+    from 'eclipse/Flan/d33tesla'
+    baseName = 'D33TESLA'
+    appendix = 'Content Pack'
+}
+
+task d33gaz(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33gaz/'}
+    from 'eclipse/Flan/d33gaz'
+    baseName = 'D33GAZ'
+    appendix = 'Content Pack'
+}
+
+task d33bugatti(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33bugatti/'}
+    from 'eclipse/Flan/d33bugatti'
+    baseName = 'D33BUGATTI'
+    appendix = 'Content Pack'
+}
+
+task d33cadillac(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33cadillac/'}
+    from 'eclipse/Flan/d33cadillac'
+    baseName = 'D33CADILLAC'
+    appendix = 'Content Pack'
+}
+
+task d33ford(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33ford/'}
+    from 'eclipse/Flan/d33ford'
+    baseName = 'D33FORD'
+    appendix = 'Content Pack'
+}
+
+task d33lexus(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33lexus/'}
+    from 'eclipse/Flan/d33lexus'
+    baseName = 'D33LEXUS'
+    appendix = 'Content Pack'
+}
+
+task d33plymouth(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33plymouth/'}
+    from 'eclipse/Flan/d33plymouth'
+    baseName = 'D33PLYMOUTH'
+    appendix = 'Content Pack'
+}
+
+task d33globalrims(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/d33globalrims/'}
+    from 'eclipse/Flan/d33globalrims'
+    baseName = 'D33GLOBAL_RIMS'
+    appendix = 'Content Pack'
+}
+
+task yeOlde(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/yeolde/'}
+    from 'eclipse/Flan/Ye Olde Pack'
+    baseName = 'Ye Olde'
+    appendix = 'Content Pack'
+}
+
+task zombie(type: Jar) {
+    from (zipTree("${destinationDir}/${archiveName}")) { include 'com/flansmod/client/model/zombie/'}
+    from 'eclipse/Flan/Zombie Pack'
+    baseName = 'Zombie'
+    appendix = 'Content Pack'
+}
+
+task contentPacks() {
+    dependsOn d33vaz
+    dependsOn d33gaz
+    dependsOn d33vazs
+    dependsOn d33mercedes
+    dependsOn d33audi
+    dependsOn d33zil
+    dependsOn d33azlk
+    dependsOn d33zaz
+    dependsOn d33lincoln
+    dependsOn d33lexus
+    dependsOn d33chevrolet
+    dependsOn d33toyota
+    dependsOn d33tesla
+    dependsOn d33nissan
+    dependsOn d33bmw
+    dependsOn d33bugatti
+    dependsOn d33cadillac
+    dependsOn d33ford
+    dependsOn d33lamborghini
+    dependsOn d33plymouth
+    dependsOn d33globalrims
+}
+
+task clearOutput(type: Delete) {
+    delete 'build/output/'
+}
+
+task outputJar(type: Jar) {
+    destinationDir = new File("build/output/mods/")
+    from (zipTree("build/libs/${archiveName}")) {
+        exclude '**/mw/'
+        exclude '**/nerf/'
+        exclude '**/titan/'
+        exclude '**/ww2/'
+        exclude '**/yeolde/'
+        exclude '**/zombie/'
+        exclude '**/d33vaz/'
+        exclude '**/d33gaz/'
+        exclude '**/d33vazs/'
+        exclude '**/d33mercedes/'
+        exclude '**/d33audi/'
+        exclude '**/d33zil/'
+        exclude '**/d33zaz/'
+        exclude '**/d33azlk/'
+        exclude '**/d33chevrolet/'
+        exclude '**/d33lincoln/'
+        exclude '**/d33toyota/'
+        exclude '**/d33tesla/'
+        exclude '**/d33nissan/'
+        exclude '**/d33bmw/'
+        exclude '**/d33bugatti/'
+        exclude '**/d33cadillac/'
+        exclude '**/d33ford/'
+        exclude '**/d33lamborghini/'
+        exclude '**/d33lexus/'
+        exclude '**/d33plymouth/'
+    }
+}
+
+task outputPacks(type: Copy) {
+    from ('build/libs/') {
+        include "**/*${version}.jar"
+        exclude "**/Flan's Mod*.jar"
+    }
+    into 'build/output/Flan/'
+}
+
+build {
+    dependsOn contentPacks
+    dependsOn clearOutput
+    dependsOn outputJar
+    dependsOn outputPacks
+}

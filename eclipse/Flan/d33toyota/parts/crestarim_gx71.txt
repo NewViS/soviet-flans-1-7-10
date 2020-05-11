@@ -1,0 +1,14 @@
+Name crestarim_gx71
+ShortName crestarim_gx71
+Icon disk_gx71
+//Colour in Red, Green, Blue, each going up to 255.
+Colour 255 255 255
+//Categories are Cockpit, Wing, Engine, Propeller, Bay, Tail, Wheel, Chassis, Turret, Misc, Disk
+Category Disk
+StackSize 1
+RecipeOutput 1
+Recipe I ingotIron M SMP_Part_Mat_Block_Steel
+III
+MII
+III
+   

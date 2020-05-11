@@ -1,0 +1,14 @@
+Name volgamain_volga3102
+ShortName volgamain_volga3102
+Icon disk_vlg_3102
+//Colour in Red, Green, Blue, each going up to 255.
+Colour 255 255 255
+//Categories are Cockpit, Wing, Engine, Propeller, Bay, Tail, Wheel, Chassis, Turret, Misc, Disk
+Category Disk
+StackSize 1
+RecipeOutput 1
+Recipe I ingotIron M SMP_Part_Mat_Block_Steel
+IMI
+III
+III
+   
